@@ -17,7 +17,7 @@ startingY = 100
 
 
 # TEMPORARY SPRITES, will get from sprite.py later
-whiteCat = pygame.image.load()
+whiteCat = pygame.image.load("spriteFolder\whiteCat")
 
 
 

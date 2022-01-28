@@ -70,9 +70,13 @@ class Game:
     def game_over(self):
         pass
 
+    def draw(self, sprite, x, y):
+        self.screen.blit(sprite, (x, y))
+
     
     # loop which will run while game_state == "playing"
     def update(self):
         self.clock.tick(self.fps)
+        pygame.display.update()
 
 
