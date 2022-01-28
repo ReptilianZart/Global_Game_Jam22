@@ -1,14 +1,19 @@
 import pygame
+from game import Game
 import projectile
 import sprites
-import global_variables
+import global_variables as gv
 
-# Initialise the pygame
-pygame.init()
 
-# Create the screen
-screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 
-# Title and Icon
-pygame.display.set_caption("Duality")
-#icon = pygame.image.load("Icon.png")
+
+
+
+g = Game()
+g.init()
+
+
+
+
+while not gv.EXITGAME:
+    g.update
