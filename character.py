@@ -2,7 +2,7 @@ import pygame
 
 import game
 import global_variables as gv
-
+import sprites as spr
 
 """
 CHARACTER CLASS:
@@ -14,11 +14,6 @@ will handle movement, logic, health etc. of the character and its opposite
 
 startingX = 100
 startingY = 100
-
-
-# TEMPORARY SPRITES, will get from sprite.py later
-whiteCat = pygame.image.load("spriteFolder\whiteCat")
-
 
 
 class Character:
