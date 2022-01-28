@@ -1,9 +1,7 @@
 import pygame
 import projectile
 import sprites
-
-SCREEN_WIDTH = 1920
-SCREEN_HEIGHT = 1080
+import global_variables
 
 # Initialise the pygame
 pygame.init()
