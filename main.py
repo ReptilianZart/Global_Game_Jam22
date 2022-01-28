@@ -7,13 +7,9 @@ import global_variables as gv
 
 
 
-
-
 g = Game()
 g.init()
 
 
-
-
 while not gv.EXITGAME:
-    g.update
+    g.run()

@@ -5,7 +5,24 @@ import sprites
 import pygame
 
 
+# Probs not gonna be used tbh, just use x,y seperately
+class Position:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
+
+
+
+"""
+GAME CLASS:
+
+Init the screen
+
+might be going to hard on the oop lol
+
+
+"""
 class Game:
     def __init__(self):
         
@@ -14,9 +31,6 @@ class Game:
         self.fps = gv.FPS
         self.game_state = "play"
 
-        
-
-        
 
     def init(self):
         # Initialise pygame
@@ -27,13 +41,19 @@ class Game:
         #   Title and Icon (32x32)
         pygame.display.set_caption("DUALITY")
 
+
+
     def run(self):
         if self.game_state == "play":
-            self.playing(self)
+            self.playing()
         elif self.game_state == "game_over":
             self.game_over()
         else:
             self.main_menu()
+
+        for event in pygame.event.get():    #outputs list of all current events
+            if event.type == pygame.QUIT:
+                gv.EXITGAME = True
 
 
 
@@ -44,16 +64,14 @@ class Game:
     
     # Runs the game
     def playing(self):
-
-        for event in pygame.event.get():    #outputs list of all current events
-            if event.type == pygame.QUIT:
-                gv.EXITGAME = True
+        pass
 
     # Runs the game over screen
     def game_over(self):
         pass
 
-
+    
+    # loop which will run while game_state == "playing"
     def update(self):
         self.clock.tick(self.fps)
 
