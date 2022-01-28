@@ -12,6 +12,5 @@ g.init()
 
 
 while not gv.EXITGAME:
-    g.draw(spr.whiteCat, 400, 400)
     g.run()
     g.update()

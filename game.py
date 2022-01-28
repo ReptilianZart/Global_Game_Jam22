@@ -1,6 +1,7 @@
 import global_variables as gv
 import projectile
-import sprites
+import sprites as spr
+import character
 
 import pygame
 
@@ -37,8 +38,7 @@ class Game:
         pygame.init()
         # Create the screen
         self.screen = pygame.display.set_mode((gv.SCREEN_WIDTH,gv.SCREEN_HEIGHT))
-
-        #   Title and Icon (32x32)
+        #   Title 
         pygame.display.set_caption("DUALITY")
 
 
@@ -54,6 +54,8 @@ class Game:
         for event in pygame.event.get():    #outputs list of all current events
             if event.type == pygame.QUIT:
                 gv.EXITGAME = True
+        self.update()
+        print("run")
 
 
 
@@ -62,19 +64,30 @@ class Game:
         # background
         pass
     
-    # Runs the game
+    # Runs the game logic
     def playing(self):
-        pass
+        # create character object and run the update function to get input movement
+        self.character = character.Character()
+        self.character.update_pos()
+        self.draw(spr.whiteCat, self.character.x, self.character.y)
+        print("playing")
+        
 
     # Runs the game over screen
     def game_over(self):
         pass
 
+
+    def get_inputs(self):
+        pass
+    
+
     def draw(self, sprite, x, y):
         self.screen.blit(sprite, (x, y))
 
+
     
-    # loop which will run while game_state == "playing"
+    # loop which will run to update screen
     def update(self):
         self.clock.tick(self.fps)
         pygame.display.update()

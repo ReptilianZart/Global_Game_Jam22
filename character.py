@@ -15,9 +15,11 @@ will handle movement, logic, health etc. of the character and its opposite
 startingX = 100
 startingY = 100
 
+sens = 150
+
 
 # TEMPORARY SPRITES, will get from sprite.py later
-whiteCat = pygame.image.load("spriteFolder\whiteCat")
+#whiteCat = pygame.image.load("spriteFolder\whiteCat")
 
 
 
@@ -28,5 +30,26 @@ class Character:
         self.dx = 0
         self.dy = 0
     
-    def draw(self):
-        pass
+    # gets keyboard inputs and updates position of character
+    def update_pos(self):
+        for event in pygame.event.get():    #outputs list of all current events
+            # move, not diagonally yet
+            if event.type == pygame.KEYUP:
+                self.dy = sens
+            elif event.type == pygame.KEYDOWN:
+                self.dy = sens
+            elif event.type == pygame.K_RIGHT:
+                self.dx = sens
+            elif event.type == pygame.K_LEFT:
+                self.dx = -sens
+
+            # resets the change, when keystroke is released
+            if event.type == pygame.KEYUP:
+                self.dx = 0
+                self.dy = 0
+
+        self.x += self.dx
+        self.y += self.dy
+
+        print("update_pos")
+
