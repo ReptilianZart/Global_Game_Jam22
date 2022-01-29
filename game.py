@@ -29,7 +29,8 @@ class Game:
         # The clock for setting the fps
         self.clock = pygame.time.Clock()
         self.fps = gv.FPS
-        self.game_state = "play"
+        self.game_state = "menu"
+        self.counter = 0
 
 
     def init(self):
@@ -60,13 +61,40 @@ class Game:
 
     # Runs the main menu
     def main_menu(self):
+
         # background
-        pass
+        self.draw(spr.background, 0, 0)
+        self.draw(spr.logo, gv.SCREEN_WIDTH/2 - 230, gv.SCREEN_HEIGHT/2 - 250)
+        self.draw(spr.title, gv.SCREEN_WIDTH/2 - 200, gv.SCREEN_HEIGHT/2 - 0)
+        # press any key to continue
+        if self.counter < 30:
+            self.draw(spr.keyprompt1, gv.SCREEN_WIDTH/2 - 230, gv.SCREEN_HEIGHT/2 + 180)
+        else:
+            self.draw(spr.keyprompt2, gv.SCREEN_WIDTH/2 - 220, gv.SCREEN_HEIGHT/2 + 190)
+
+        if self.counter > 60:
+            self.counter = 0
+        self.counter += 1
+
+
+        # check to go to play
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                gv.EXITGAME = True
+                pygame.quit()
+            if event.type == pygame.KEYDOWN:
+                self.game_state = "play"
+
+        
+    
     
     # Runs the game
     def playing(self):
+        self.draw(spr.background, 0, 0)
         player.movePlayer(player)
-        pass
+        self.drawPlayer()
+        self.check_Exit()
+        
 
     # Runs the game over screen
     def game_over(self):
@@ -79,8 +107,13 @@ class Game:
         self.draw(spr.blackCat, player.bx, player.by)
         self.draw(spr.whiteCat, player.wx, player.wy)
 
+    def check_Exit(self):
+        for event in pygame.event.get():    #outputs list of all current events
+            if event.type == pygame.QUIT:
+                gv.EXITGAME = True
+                pygame.quit()
     
-    # loop which will run while game_state == "playing"
+    # loop which will run 
     def update(self):
         if (gv.EXITGAME):
             #return to prevent screen update error after quitting
