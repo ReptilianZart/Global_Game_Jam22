@@ -70,27 +70,36 @@ def movePlayer(self):
     self.dx = 0
     self.dy = 0
     for event in pygame.event.get():
+        print(event)
         if event.type == pygame.QUIT:
             gv.EXITGAME = True
             pygame.quit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 self.left = 1
-            elif event.key == pygame.K_RIGHT:
+                print("LEFT_P")
+            if event.key == pygame.K_RIGHT:
                 self.right = 1
-            elif event.key == pygame.K_UP:
+                print("RIGHT_P")
+            if event.key == pygame.K_UP:
                 self.up = 1
-            elif event.key == pygame.K_DOWN:
+                print("UP_P")
+            if event.key == pygame.K_DOWN:
                 self.down = 1
-        elif event.type == pygame.KEYUP:
+                print("DOWN_P")
+        if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 self.left = 0
-            elif event.key == pygame.K_RIGHT:
+                print("LEFT_R")
+            if event.key == pygame.K_RIGHT:
                 self.right = 0
-            elif event.key == pygame.K_UP:
+                print("RIGHT_R")
+            if event.key == pygame.K_UP:
                 self.up = 0
-            elif event.key == pygame.K_DOWN:
+                print("UP_R")
+            if event.key == pygame.K_DOWN:
                 self.down = 0
+                print("DOWN_R")
     # sum the changes in position
     if (self.left):
         if (self.mx > -1):

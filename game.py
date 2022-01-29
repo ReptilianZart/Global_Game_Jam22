@@ -97,8 +97,6 @@ class Game:
 
         # bullets
         self.test_bullets()
-
-        self.check_Exit()
         
 
     def test_bullets(self):
@@ -128,13 +126,6 @@ class Game:
             self.draw(spr.bullet, bullet.x, bullet.y)
             #pygame.draw.circle(self.screen, (255,255,255), (bullet.x, bullet.y))
             pass
-
-
-    def check_Exit(self):
-        for event in pygame.event.get():    #outputs list of all current events
-            if event.type == pygame.QUIT:
-                gv.EXITGAME = True
-                pygame.quit()
     
     # loop which will run 
     def update(self):
