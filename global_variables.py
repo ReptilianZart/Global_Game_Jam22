@@ -4,3 +4,7 @@ SCREEN_HEIGHT = 600
 
 
 EXITGAME = False
+
+projectiles = []
+
+
