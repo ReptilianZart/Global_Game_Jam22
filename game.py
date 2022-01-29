@@ -1,9 +1,9 @@
 import global_variables as gv
 import projectile
-import sprites
+import sprites as spr
+import character as player
 
 import pygame
-
 
 # Probs not gonna be used tbh, just use x,y seperately
 class Position:
@@ -74,9 +74,16 @@ class Game:
     def draw(self, sprite, x, y):
         self.screen.blit(sprite, (x, y))
 
+    def drawPlayer(self):
+        self.draw(spr.blackCat, player.bx, player.by)
+        self.draw(spr.whiteCat, player.wx, player.wy)
+
     
     # loop which will run while game_state == "playing"
     def update(self):
+        if (gv.EXITGAME):
+            #return to prevent screen update error after quitting
+            return
         self.clock.tick(self.fps)
         pygame.display.update()
 
