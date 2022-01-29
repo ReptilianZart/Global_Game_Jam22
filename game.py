@@ -105,6 +105,8 @@ class Game:
         if self.counter > 50:
             self.counter = 0
             projectile.spawn_bullet(0,gv.SCREEN_HEIGHT/2)
+        if self.counter == 25:
+            projectile.spawn_bullet_list(gv.center_x, gv.center_y, projectile.bullet_circle)
         projectile.update_projectile()
         self.draw_bullets()
 

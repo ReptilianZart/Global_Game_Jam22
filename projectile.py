@@ -1,6 +1,27 @@
+from cmath import sqrt
+from tkinter import CENTER
 import pygame
 import game as g
 import global_variables as gv
+import math
+
+sqrt2 = round(math.sqrt(2), 1)/2
+
+# directions
+N = (0,-1)
+NE = (sqrt2,-sqrt2)
+E = (1,0)
+SE = (sqrt2,sqrt2)
+S = (0,1)
+SW = (-sqrt2,sqrt2)
+W = (-1,0)
+NW = (-sqrt2,-sqrt2)
+
+# some ready made sets of directions
+bullet_circle = [N,NE,E,SE,S,SW,W,NW]
+
+
+
 
 
 projectileX = 0
@@ -18,9 +39,14 @@ class Projectile:
 
 
 
-def spawn_bullet(x,y):
-    bullet = Projectile(x,y)
+def spawn_bullet(x,y, vector = (1,0)):
+    bullet = Projectile(x,y, vector)
     gv.projectiles.append(bullet)
+
+
+def spawn_bullet_list(x,y, dir):
+    for direc in dir:
+        spawn_bullet(x, y, direc)
 
 
 # function to run through the projectile list and update
@@ -30,7 +56,7 @@ def update_projectile():
         proj.y += proj.vector[1]
 
 
-
+# not used, instead its in game.py cus the g.screen is fucky
 # function to run through the projectile list and update
 def draw_projectile():
     for proj in gv.projectiles:
