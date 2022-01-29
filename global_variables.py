@@ -10,4 +10,6 @@ EXITGAME = False
 
 projectiles = []
 
+hitbox = 32
+
 

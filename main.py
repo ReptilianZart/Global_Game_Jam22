@@ -48,7 +48,7 @@ while not gv.EXITGAME:
     g.run()
     g.update()
     #debug.guide_lines()
-    print(len(gv.projectiles))
+    #print(len(gv.projectiles))
     debug.draw_fps()
 
     pygame.display.flip()

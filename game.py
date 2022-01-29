@@ -1,9 +1,11 @@
+from numpy import character
 import global_variables as gv
 import projectile 
 import sprites as spr
 import character as player
 
 import pygame
+import math
 
 # Probs not gonna be used tbh, just use x,y seperately
 class Position:
@@ -98,8 +100,22 @@ class Game:
         # bullets
         self.test_bullets()
 
+        # check collision
+        collision = self.check_collision
+        if not collision:
+            self.game_state = "menu"
+
         self.check_Exit()
         
+    
+    def check_collision(self):
+        for bullet in gv.projectiles:
+            distance = get_distance(bullet.x, bullet.y, player.wx, player.wy)
+            if distance <= gv.hitbox:
+                return True 
+        return False
+
+
 
     def test_bullets(self):
         if self.counter > 50:
@@ -115,7 +131,7 @@ class Game:
     # Runs the game over screen
     def game_over(self):
         pass
-
+    
     def draw(self, sprite, x, y):
         self.screen.blit(sprite, (x, y))
 
@@ -145,3 +161,5 @@ class Game:
         pygame.display.update()
 
 
+def get_distance(x1, y1, x2, y2):
+    return round(math.sqrt(pow(x1-x2, 2) + pow(y1-y2, 2)))
