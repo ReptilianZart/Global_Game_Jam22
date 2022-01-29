@@ -82,7 +82,7 @@ def movePlayer(self):
                 self.up = 1
             elif event.key == pygame.K_DOWN:
                 self.down = 1
-        elif event.type == pygame.KEYUP:
+        if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 self.left = 0
             elif event.key == pygame.K_RIGHT:
