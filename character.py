@@ -31,37 +31,83 @@ def updatePos(self, change_x, change_y):
     self.bx -= change_x
     self.by -= change_y
 
+# Change in position
+dx = 0
+dy = 0
+
+# Momentum
+mx = 0
+my = 0
+
+# Keep track of current directional keys being pressed
+left = 0
+right = 0
+up = 0
+down = 0
+
+
 def movePlayer(self):
-    dx = 0
-    dy = 0
+    self.dx = 0
+    self.dy = 0
     for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            gv.EXITGAME = True
+            pygame.quit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                gv.left = 1
+                self.left = 1
             elif event.key == pygame.K_RIGHT:
-                gv.right = 1
+                self.right = 1
             elif event.key == pygame.K_UP:
-                gv.up = 1
+                self.up = 1
             elif event.key == pygame.K_DOWN:
-                gv.down = 1
+                self.down = 1
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
-                gv.left = 0
+                self.left = 0
             elif event.key == pygame.K_RIGHT:
-                gv.right = 0
+                self.right = 0
             elif event.key == pygame.K_UP:
-                gv.up = 0
+                self.up = 0
             elif event.key == pygame.K_DOWN:
-                gv.down = 0
+                self.down = 0
     # sum the changes in position
-    if (gv.left):
-        dx -= 3
-    if (gv.right):
-        dx += 3
-    if (gv.up):
-        dy -= 3
-    if (gv.down):
-        dy += 3
-    updatePos(self, dx, dy)
+    if (self.left):
+        if (self.mx > -1):
+            self.mx -= 0.1
+        self.dx -= 3
+    if (self.right):
+        if (self.mx < 1):
+            self.mx += 0.1
+        self.dx += 3
+    if (self.left == 0 and self.right == 0):
+        if (self.mx > 0.1):
+            self.mx -= 0.1
+        elif (self.mx < -0.1):
+            self.mx += 0.1
+        else:
+            self.mx = 0
+            
+    if (self.up):
+        if (self.my > -1):
+            self.my -= 0.1
+        self.dy -= 3
+    if (self.down):
+        if (self.my < 1):
+            self.my += 0.1
+        self.dy += 3
+    if (self.up == 0 and self.down == 0):
+        if (self.my > 0.1):
+            self.my -= 0.1
+        elif (self.my < -0.1):
+            self.my += 0.1
+        else:
+            self.my = 0
+
+    # add momentum
+    self.dx += self.mx
+    self.dy += self.my
+    
+    updatePos(self, self.dx, self.dy)
                 
     

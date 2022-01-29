@@ -51,10 +51,10 @@ class Game:
         else:
             self.main_menu()
 
-        for event in pygame.event.get():    #outputs list of all current events
+        """for event in pygame.event.get():    #outputs list of all current events
             if event.type == pygame.QUIT:
                 gv.EXITGAME = True
-                pygame.quit()
+                pygame.quit()"""
 
 
 
