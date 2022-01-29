@@ -31,6 +31,26 @@ def updatePos(self, change_x, change_y):
     self.bx -= change_x
     self.by -= change_y
 
+    # adding boundary
+    if self.wx < 0:
+        self.wx = 0
+    if self.wx > gv.SCREEN_WIDTH - spr.CatSize:
+        self.wx = gv.SCREEN_WIDTH - spr.CatSize
+    if self.wy < 0:
+        self.wy = 0
+    if self.wy > gv.SCREEN_HEIGHT - spr.CatSize:
+        self.wy = gv.SCREEN_HEIGHT - spr.CatSize
+
+    if self.bx < 0:
+        self.bx = 0
+    if self.bx > gv.SCREEN_WIDTH - spr.CatSize:
+        self.bx = gv.SCREEN_WIDTH - spr.CatSize
+    if self.by < 0:
+        self.by = 0
+    if self.by > gv.SCREEN_HEIGHT - spr.CatSize:
+        self.by = gv.SCREEN_HEIGHT - spr.CatSize
+
+
 # Change in position
 dx = 0
 dy = 0
@@ -104,10 +124,12 @@ def movePlayer(self):
         else:
             self.my = 0
 
+
     # add momentum
     self.dx += self.mx
     self.dy += self.my
-    
+
+
     updatePos(self, self.dx, self.dy)
                 
     
