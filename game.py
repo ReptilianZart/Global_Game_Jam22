@@ -65,6 +65,7 @@ class Game:
     
     # Runs the game
     def playing(self):
+        player.movePlayer(player)
         pass
 
     # Runs the game over screen
