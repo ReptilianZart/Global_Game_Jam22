@@ -54,6 +54,11 @@ def update_projectile():
     for proj in gv.projectiles:
         proj.x += proj.vector[0]
         proj.y += proj.vector[1]
+        if proj.x > gv.SCREEN_WIDTH or proj.x < 0:
+            gv.projectiles.remove(proj)
+        elif proj.y > gv.SCREEN_HEIGHT or proj.y < 0:
+            gv.projectiles.remove(proj)
+
 
 
 # not used, instead its in game.py cus the g.screen is fucky
