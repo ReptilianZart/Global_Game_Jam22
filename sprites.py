@@ -1,6 +1,6 @@
 import pygame
 
-whiteCat = pygame.image.load("spriteFolder/whiteCat3.png")
+whiteCat = pygame.image.load("spriteFolder/whiteCat.png")
 CatSize = 64
 
 blackCat = pygame.image.load("spriteFolder/blackCat.png")
