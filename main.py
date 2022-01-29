@@ -8,6 +8,8 @@ g = Game()
 g.init()
 
 
+
+
 #############################################
 
 """
@@ -30,6 +32,8 @@ class debug:
 
 
 
+
+
 #############################################
 
 
@@ -40,7 +44,7 @@ while not gv.EXITGAME:
     g.run()
     g.update()
     #debug.guide_lines()
-
+    print(len(gv.projectiles))
 
     pygame.display.flip()
 

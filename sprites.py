@@ -20,3 +20,7 @@ keyprompt2 = arcadeFont2.render("Press any key to continue", True, (255,255,255)
 
 creditFont = pygame.font.Font("fonts/arcade2.ttf", 15)
 credit = creditFont.render("Created by ", True, (255,255,255))
+
+
+# PROJECTILES
+bullet = pygame.image.load("spriteFolder/bullet.png")

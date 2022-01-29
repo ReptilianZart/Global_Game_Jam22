@@ -1,5 +1,5 @@
 import global_variables as gv
-import projectile
+import projectile 
 import sprites as spr
 import character as player
 
@@ -31,6 +31,7 @@ class Game:
         self.fps = gv.FPS
         self.game_state = "menu"
         self.counter = 0
+
 
 
     def init(self):
@@ -93,8 +94,21 @@ class Game:
         self.draw(spr.background, 0, 0)
         player.movePlayer(player)
         self.drawPlayer()
+
+        # bullets
+        self.test_bullets()
+
         self.check_Exit()
         
+
+    def test_bullets(self):
+        if self.counter > 50:
+            self.counter = 0
+            projectile.spawn_bullet(0,gv.SCREEN_HEIGHT/2)
+        projectile.update_projectile()
+        self.draw_bullets()
+
+        self.counter += 1
 
     # Runs the game over screen
     def game_over(self):
@@ -106,6 +120,13 @@ class Game:
     def drawPlayer(self):
         self.draw(spr.blackCat, player.bx, player.by)
         self.draw(spr.whiteCat, player.wx, player.wy)
+
+    def draw_bullets(self):
+        for bullet in gv.projectiles:
+            self.draw(spr.bullet, bullet.x, bullet.y)
+            #pygame.draw.circle(self.screen, (255,255,255), (bullet.x, bullet.y))
+            pass
+
 
     def check_Exit(self):
         for event in pygame.event.get():    #outputs list of all current events
