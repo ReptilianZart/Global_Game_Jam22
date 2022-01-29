@@ -30,6 +30,10 @@ class debug:
         # vertical
         pygame.draw.line(g.screen, self.GREEN, (gv.SCREEN_WIDTH/2, 0), (gv.SCREEN_WIDTH/2, gv.SCREEN_HEIGHT))
 
+    def draw_fps(self):
+        fps = spr.creditFont.render(str(round(g.clock.get_fps())), True, (254,254,254))
+        g.screen.blit(fps, (5,5))
+
 
 
 
@@ -45,6 +49,7 @@ while not gv.EXITGAME:
     g.update()
     #debug.guide_lines()
     print(len(gv.projectiles))
+    debug.draw_fps()
 
     pygame.display.flip()
 
