@@ -100,7 +100,7 @@ def movePlayer(self):
         if (self.mx < 1):
             self.mx += 0.1
         self.dx += 3
-    if (self.left == 0 and self.right == 0):
+    if ((self.left == 0 and self.right == 0) or (self.left == 1 and self.right == 1)):
         if (self.mx > 0.1):
             self.mx -= 0.1
         elif (self.mx < -0.1):
@@ -116,7 +116,7 @@ def movePlayer(self):
         if (self.my < 1):
             self.my += 0.1
         self.dy += 3
-    if (self.up == 0 and self.down == 0):
+    if ((self.up == 0 and self.down == 0) or (self.up == 1 and self.down == 1)):
         if (self.my > 0.1):
             self.my -= 0.1
         elif (self.my < -0.1):
