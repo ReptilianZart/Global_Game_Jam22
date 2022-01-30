@@ -161,7 +161,7 @@ class Game:
     def game_over(self):
         game_over_background = pygame.image.load("game_over_background.jpg")
         self.screen.blit(game_over_background,0,0)
-    
+
 
     """
     OTHER METHODS
