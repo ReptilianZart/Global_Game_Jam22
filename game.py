@@ -1,9 +1,12 @@
+from numpy import character
 import global_variables as gv
 import projectile 
 import sprites as spr
-import character as player
+import character
 
 import pygame
+import math
+
 
 # Probs not gonna be used tbh, just use x,y seperately
 class Position:
@@ -19,7 +22,6 @@ GAME CLASS:
 
 Init the screen
 
-might be going to hard on the oop lol
 
 
 """
@@ -53,12 +55,14 @@ class Game:
         else:
             self.main_menu()
 
-        """for event in pygame.event.get():    #outputs list of all current events
-            if event.type == pygame.QUIT:
-                gv.EXITGAME = True
-                pygame.quit()"""
 
 
+
+
+    """
+    MAIN MENU STATE
+
+    """
 
     # Runs the main menu
     def main_menu(self):
@@ -84,20 +88,36 @@ class Game:
                 gv.EXITGAME = True
                 pygame.quit()
             if event.type == pygame.KEYDOWN:
-                self.game_state = "play"
+                self.start_game()
 
         
+
+
+    """
+    PLAY STATE
     
+    """
+
+    def start_game(self):
+        self.game_state = "play"
+        gv.projectiles = []
+        self.player = character.Player()
+
     
     # Runs the game
     def playing(self):
         self.draw(spr.background, 0, 0)
-        player.movePlayer(player)
+        self.player.movePlayer()
         self.drawPlayer()
 
         # bullets
         self.test_bullets()
-        
+
+        # collision
+        collision = self.check_collision()
+        if collision:
+            self.game_state = "menu"
+
 
     def test_bullets(self):
         if self.counter > 50:
@@ -110,22 +130,48 @@ class Game:
 
         self.counter += 1
 
-    # Runs the game over screen
-    def game_over(self):
-        pass
 
-    def draw(self, sprite, x, y):
-        self.screen.blit(sprite, (x, y))
+    def check_collision(self):
+        for bullet in gv.projectiles:
+            dist = get_distance(self.player.wx, self.player.wy, bullet.x, bullet.y)
+            if dist < 32:
+                return True
+        return False
+
 
     def drawPlayer(self):
-        self.draw(spr.blackCat, player.bx, player.by)
-        self.draw(spr.whiteCat, player.wx, player.wy)
+        self.draw(spr.blackCat, self.player.bx, self.player.by)
+        self.draw(spr.whiteCat, self.player.wx, self.player.wy)
 
     def draw_bullets(self):
         for bullet in gv.projectiles:
             self.draw(spr.bullet, bullet.x, bullet.y)
             #pygame.draw.circle(self.screen, (255,255,255), (bullet.x, bullet.y))
             pass
+    
+
+
+
+    """
+    GAME OVER STATE
+    
+    """
+
+    # Runs the game over screen
+    def game_over(self):
+        pass
+
+
+
+    """
+    OTHER METHODS
+
+    """
+
+    
+    def draw(self, sprite, x, y):
+        self.screen.blit(sprite, (x, y))
+
     
     # loop which will run 
     def update(self):
@@ -136,3 +182,12 @@ class Game:
         pygame.display.update()
 
 
+
+
+"""
+GENERIC FUNCTIONS
+
+"""
+
+def get_distance(x1, y1, x2, y2):
+    return math.sqrt(pow(x1-x2,2) + pow(y1-y2,2))
