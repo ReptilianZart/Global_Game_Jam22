@@ -112,7 +112,9 @@ class Game:
 
     # Runs the game over screen
     def game_over(self):
-        pass
+        game_over_background = pygame.image.load("game_over_background.jpg")
+        self.screen.blit(game_over_background,0,0)
+        
 
     def draw(self, sprite, x, y):
         self.screen.blit(sprite, (x, y))
